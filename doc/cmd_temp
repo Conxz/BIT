@@ -1,0 +1,104 @@
+#!/usr/bin/env python
+# emacs: -*- mode: python; py-indent-offset: 4; indent-tabs-mode: nil -*-
+# vi: set ft=python sts=4 ts=4 sw=4 et:
+
+"""This is a pythonic cmd-line template.
+
+# Paste the output of 'prog -h' here.
+
+"""
+
+import argparse
+#from nkpi.base import nkpi_logger
+
+def main():
+    parser = argparse.ArgumentParser(
+            description = 'A pythonic cmd-line template.',
+            prog = 'cmd_template')
+    
+    # A required parameter with one arg.
+    parser.add_argument('--csv',
+                        dest = 'csvfile',
+                        required = True,
+                        nargs = 1,
+                        metavar = 'csv-file',
+                        help = 'an input csv file containing scores.')
+    # An optional parameter.
+    parser.add_argument('--sf',
+                        dest = 'sessfile',
+                        default = None,
+                        metavar = 'sessid-file',
+                        help = 'an input file containing subject id list.')
+    # A required parameter with one or more args.
+    parser.add_argument('--yl',
+                        dest = 'ylabel',
+                        required = True,
+                        nargs = '+',
+                        metavar = 'y-label',
+                        help = 'one or more args.')
+    # A required parameter with zero, or more args.
+    parser.add_argument('--xl',
+                        dest = 'xlabel',
+                        required = True,
+                        nargs = '?',
+                        metavar = 'x-label',
+                        help = 'zero, one or more args.')
+    
+    # A mutually exclusive group
+    group_nbin = parser.add_mutually_exclusive_group(required=True)
+    group_nbin.add_argument('--binned',
+                        dest = 'binned',
+                        default = False,
+                        action = 'store_true',
+                        help = 'X is a binned variable.(Mutual exclusion with -nbin)')
+    group_nbin.add_argument('--nbin',
+                        dest = 'nbin',
+                        type = int,
+                        metavar = 'n-bin',
+                        help = 'number of bins.(Mutual exclusion with -binned)')
+    
+    # A parameter without arg.
+    parser.add_argument('--rmerr',
+                        dest = 'rmerr',
+                        default = True,
+                        action = 'store_false',
+                        help = 'Remove error bar for each point.')
+    parser.add_argument('--rmfit',
+                        dest = 'rmfit',
+                        default = True,
+                        action = 'store_false',
+                        help = 'Remove the fitting line.')
+    
+    # A required parameter with choices.
+    parser.add_argument('--level',
+                        required=True,
+                        choices=['run', 'sess'],
+                        help='run level')
+    
+    # Others
+    parser.add_argument('--log', 
+                        dest = 'log', 
+                        default = None,
+                        metavar = 'log-file',
+                        help='log name for the processing.')
+    parser.add_argument('-v', action='version', version='%(prog)s 0.0.1')
+
+    args = parser.parse_args()
+
+    ### logger
+    logger = nkpi_logger(args.log)
+    logger.debug(args)
+    logger.info('Start Running')
+
+    ### begin your procedure
+    print '######################'
+    print 'Insert your CODE here.'
+    print 'you can do logging with logger.info(\'info string\').'
+    print '######################'
+    
+    ### logger
+    logger.info('Finished Running')
+    
+if __name__ == '__main__':
+    main()
+
