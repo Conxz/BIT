@@ -13,13 +13,16 @@ def main():
     sesslist = glob.glob('*')
     sesslist.sort()
     scans = ['session_1', 'session_2']
-    brains = ['MPRAGE_1', 'DTI64_1', 'BOLDrestingCAP_1']
+    brains = ['MPRAGE_1', 'DTI64_1', 'BOLDrestingCAP_1', 'MPRAGEshorter_1']
+
+    #sids_with_alldat = []
     
     for scan in scans:
         print scan
+        sids_with_alldat = []
         print 'SID\t', 'phenotypic\t', '\t'.join(brains)
         for sid in sesslist:
-            boollist = [sid, '0', '0', '0', '0']
+            boollist = [sid, '0', '0', '0', '0', '0']
             
             behdir = os.path.join(sid, 'phenotypic')
             if os.path.exists(behdir):
@@ -33,7 +36,13 @@ def main():
                         boollist[i+2] = '1'
             
             print '\t'.join(boollist)
-            #print boollist
+            
+            if ''.join(boollist[1:4]) == '111':
+                sids_with_alldat.append(sid)
+        
+        print 'Sessid with all data, including MPRAGE, DTI, and Resting.'
+        print 'SID'
+        print '\n'.join(sids_with_alldat)
 
 if __name__ == '__main__':
     main()
