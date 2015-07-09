@@ -11,7 +11,7 @@ import glob
 #import subprocess
 
 logdir = '/nfs/p1/public_dataset/datasets/NKI_Sample/log'
-if os.path.exists(logdir):
+if not os.path.exists(logdir):
     os.mkdir(logdir)
 
 datdir = '/nfs/p1/public_dataset/datasets/NKI_Sample/data'
@@ -38,6 +38,6 @@ for scan in scans:
                 cmd_bet = 'bet ' + mri_file + ' ' + anat_brain+ ' -f 0.4 -m'
                 print cmd_bet
                 if run == 1:
-                    os.system('fsl_sub -l logdir ' + cmd_bet)
+                    os.system('fsl_sub -l ' + logdir + ' ' + cmd_bet)
                     #subprocess.call(cmd_bet, shell=True)
 
