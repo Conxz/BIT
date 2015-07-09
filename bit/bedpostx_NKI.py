@@ -25,9 +25,9 @@ def subjrlf(subject_id):
     mri_n = 'MPRAGE_1'
     dti_n = 'DTI64_1'
     info = dict(
-                dwi = [[subject_id,'session_1',dti_n,'DTI.nii.gz']],
-                bvecs = [[subject_id,'session_1',dti_n,'DTI.bvec']],
-                bvals = [[subject_id,'session_1',dti_n,'DTI.bval']],
+                dwi = [[subject_id,'session_1',dti_n,'d.nii.gz']],
+                bvecs = [[subject_id,'session_1',dti_n,'d.bvec']],
+                bvals = [[subject_id,'session_1',dti_n,'d.bval']],
                 mri = [[subject_id,'session_1',mri_n,'anat_brain.nii.gz']]
                 )
     return info
@@ -48,10 +48,7 @@ extract the volume with b=0 (nodif_brain)
 """
 fslroi = pe.Node(interface=fsl.ExtractROI(),name='fslroi')
 fslroi.inputs.t_min=0
-fslroi.inputs.t_size=12 # 12 b0 volumes
-
-fslmaths = pe.Node(interface=fsl.ImageMaths(), name='fslmaths')
-fslmaths.inputs.op_string= '-Tmean'
+fslroi.inputs.t_size=1 # 1 b0 volumes which is averaged by x.py
 
 """
 correct the diffusion weighted images for eddy_currents
@@ -79,7 +76,6 @@ mni2anat.inputs.cost_func='corratio'
 register MNI152-->b0 using matrixes we have got above 
 """
 xfmconcat = pe.Node(interface=fsl.ConvertXFM(concat_xfm=True),name='xfmconcat')
-#fa2mni = pe.Node(interface=fsl.ApplyXfm(reference=standardspace),name='fa2mni')
 
 """
 estimate the diffusion parameters: phi, theta, and so on
@@ -95,11 +91,11 @@ preTract.connect([
                                         ('subject_id','subject_id'),
                                         (('subject_id',subjrlf),'template_args')]),
                 (datasource, fslroi, [('dwi','in_file')]),
+                
                 (datasource, eddycorrect, [('dwi','inputnode.in_file')]),
-                (fslroi, fslmaths, [('roi_file','in_file')]),
-                (fslmaths, bet, [('out_file','in_file')]),
-
-                (fslmaths, anat2b0, [('out_file','reference')]),
+                (fslroi, bet, [('roi_file','in_file')]),
+                
+                (fslroi, anat2b0, [('roi_file','reference')]),
                 (datasource, anat2b0, [('mri','in_file')]),
 
                 (datasource, mni2anat,[('mri','reference')]),
@@ -107,7 +103,6 @@ preTract.connect([
                 (mni2anat,xfmconcat,[('out_matrix_file','in_file')]),
                 (anat2b0,xfmconcat,[('out_matrix_file','in_file2')]),
 
-#                (xfmconcat,fa2mni,[('out_file','in_matrix_file')]),
                 (datasource, bedpostx, [
                                         ('bvals','inputnode.bvals'),
                                         ('bvecs','inputnode.bvecs')]),
