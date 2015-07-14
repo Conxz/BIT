@@ -18,4 +18,12 @@ Dependencies:
 
 * NSP, [Neo-Spearman Project(NSP)](http://www.brainactivityatlas.org/about-baa/overview/), also known as Gene, Environment, Brain, and Behavior(GEB<sup>2</sup>)
 
+## Probalematic data
+
+* NKI
+	1351931, incorrect bvec file for DTI64_1.
+	2136756, incorrect directions for DTI64_1 scanning, maybe incomplete scanning.
+
+## License information
+
 
