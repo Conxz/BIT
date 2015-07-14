@@ -21,7 +21,9 @@ Dependencies:
 ## Probalematic data
 
 * NKI
+
 	1351931, incorrect bvec file for DTI64_1.
+
 	2136756, incorrect directions for DTI64_1 scanning, maybe incomplete scanning.
 
 ## License information
