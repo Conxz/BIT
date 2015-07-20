@@ -28,4 +28,4 @@ Dependencies:
 
 ## License information
 
-
+Copyright (c) 2015-2015, BIT Developers All right reserved.
