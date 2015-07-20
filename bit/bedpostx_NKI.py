@@ -20,8 +20,6 @@ sinkDir = '/nfs/p1/public_dataset/datasets/NKI_Sample/preproc/bedpostx'
 bet_frac = 0.2
 
 def subjrlf(subject_id):
-    import os
-    databank = '/nfs/p1/public_dataset/datasets/NKI_Sample/data'
     mri_n = 'MPRAGE_1'
     dti_n = 'DTI64_1'
     info = dict(
