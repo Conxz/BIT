@@ -24,7 +24,10 @@ out_csv_writer.writerow(new_beh_list)
 
 datdir = '/nfs/p1/public_dataset/datasets/NKI_Sample/data'
 os.chdir(datdir)
-sidlist = glob.glob('*')
+#sidlist = glob.glob('*')
+sessidFile = '/nfs/p1/public_dataset/datasets/NKI_Sample/docs/sessid_mri_dti_rest.txt'
+fsessid = open(sessidFile)
+sidlist = [line.strip() for line in fsessid]
 
 pheno = 'phenotypic'
 
