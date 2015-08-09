@@ -18,7 +18,7 @@ Dependencies:
 
 * NSP, [Neo-Spearman Project(NSP)](http://www.brainactivityatlas.org/about-baa/overview/), also known as Gene, Environment, Brain, and Behavior(GEB<sup>2</sup>)
 
-## Probalematic data
+## Problematic data
 
 * NKI
 
