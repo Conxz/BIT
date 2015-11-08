@@ -25,6 +25,8 @@ Dependencies:
 	1351931, incorrect bvec file for DTI64_1.
 
 	2136756, incorrect directions for DTI64_1 scanning, maybe incomplete scanning.
+	
+	9421819, poor data quality for structrual MRI (maybe caused by large motion) (see /doc/nki_poormri.jpg). 
 
 ## License information
 
