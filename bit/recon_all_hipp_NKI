@@ -1,0 +1,31 @@
+#!/usr/bin/env python
+# emacs: -*- mode: python; py-indent-offset: 4; indent-tabs-mode: nil -*-
+# vi: set ft=python sts=4 ts=4 sw=4 et:
+
+import os
+
+subjdir = '/nfs/p1/public_dataset/datasets/NKI_Sample/surf'
+env_subjdir = os.getenv('SUBJECTS_DIR')
+if subjdir != env_subjdir:
+    os.environ['SUBJECTS_DIR'] = subjdir 
+print os.getenv('SUBJECTS_DIR')
+
+fsess = '/nfs/p1/public_dataset/datasets/NKI_Sample/docs/sessid_mri_dti_rest.txt'
+all_sess_list = [x[:-1] for x in open(fsess).readlines()]
+#sess_list = all_sess_list[:50]
+#sess_list = all_sess_list[50:100]
+#sess_list = all_sess_list[100:150]
+##sess_list = ['1713513']
+#sess_list = all_sess_list[150:]
+sess_list = all_sess_list
+
+prefix = '/nfs/p1/public_dataset/datasets/NKI_Sample/data'
+
+for sess in sess_list:
+    invol = os.path.join(prefix, sess, 'session_1/MPRAGE_1', 'defaced_MPRAGE.nii.gz')
+    print os.path.exists(invol)
+    
+    cmdstr = 'fsl_sub recon-all -subjid ' + sess + ' -hippo-subfields'
+    print cmdstr
+    os.system(cmdstr)
+
