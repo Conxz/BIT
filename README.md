@@ -26,7 +26,7 @@ Dependencies:
 
 	2136756, incorrect directions for DTI64_1 scanning, maybe incomplete scanning.
 	
-	9421819, 4230470, 1713513, poor data quality for structrual MRI (maybe caused by large motion) (see /doc/nki_poormri_*.jpg). 
+	9421819, 4230470, poor data quality for structrual MRI (maybe caused by large motion) (see /doc/nki_poormri_*.jpg). 
 
 ## License information
 
