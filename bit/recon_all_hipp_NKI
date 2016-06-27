@@ -10,7 +10,8 @@ if subjdir != env_subjdir:
     os.environ['SUBJECTS_DIR'] = subjdir 
 print os.getenv('SUBJECTS_DIR')
 
-fsess = '/nfs/p1/public_dataset/datasets/NKI_Sample/docs/sessid_mri_dti_rest.txt'
+#fsess = '/nfs/p1/public_dataset/datasets/NKI_Sample/docs/sessid_mri_dti_rest.txt'
+fsess = '/nfs/p1/public_dataset/datasets/NKI_Sample/stats/subhsid'
 all_sess_list = [x[:-1] for x in open(fsess).readlines()]
 #sess_list = all_sess_list[:50]
 #sess_list = all_sess_list[50:100]
@@ -18,6 +19,7 @@ all_sess_list = [x[:-1] for x in open(fsess).readlines()]
 ##sess_list = ['1713513']
 #sess_list = all_sess_list[150:]
 sess_list = all_sess_list
+#sess_list = ['1334556']
 
 prefix = '/nfs/p1/public_dataset/datasets/NKI_Sample/data'
 

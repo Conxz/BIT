@@ -17,15 +17,18 @@ all_sess_list = [x[:-1] for x in open(fsess).readlines()]
 #sess_list = all_sess_list[100:150]
 ##sess_list = ['1713513']
 #sess_list = all_sess_list[150:]
-sess_list = all_sess_list
+#sess_list = all_sess_list
+#sess_list = ['1366839']
+sess_list = ['1445797', '2967284', '4077433']
+
 
 prefix = '/nfs/p1/public_dataset/datasets/NKI_Sample/data'
 
 for sess in sess_list:
     invol = os.path.join(prefix, sess, 'session_1/MPRAGE_1', 'defaced_MPRAGE.nii.gz')
     print os.path.exists(invol)
-    ##cmdstr = 'fsl_sub recon-all -subjid ' + sess + ' -no-isrunning' + ' -all -qcache'
-    cmdstr = 'fsl_sub recon-all -subjid ' + sess + ' -i ' + invol + ' -all -qcache'
+    cmdstr = 'fsl_sub recon-all -subjid ' + sess + ' -no-isrunning' + ' -all -qcache'
+    #cmdstr = 'fsl_sub recon-all -subjid ' + sess + ' -i ' + invol + ' -all -qcache'
     print cmdstr
     os.system(cmdstr)
     
