@@ -1,0 +1,31 @@
+#!/usr/bin/env python
+# emacs: -*- mode: python; py-indent-offset: 4; indent-tabs-mode: nil -*-
+# vi: set ft=python sts=4 ts=4 sw=4 et:
+
+import os
+
+subjdir = '/nfs/p1/public_dataset/datasets/NKI_Sample/surf'
+env_subjdir = os.getenv('SUBJECTS_DIR')
+if subjdir != env_subjdir:
+    os.environ['SUBJECTS_DIR'] = subjdir 
+print os.getenv('SUBJECTS_DIR')
+
+fsess = '/nfs/p1/public_dataset/datasets/NKI_Sample/docs/sessid_mri_dti_rest.txt'
+all_sess_list = [x[:-1] for x in open(fsess).readlines()]
+sess_list = all_sess_list
+
+tmpdir  = '/nfs/p1/public_dataset/datasets/NKI_Sample/tmp'
+
+avgfiles = os.path.join(subjdir, '*average')
+cmdstr = 'mv ' + avgfiles + ' ' + tmpdir
+print cmdstr
+#os.system(cmdstr)
+
+cmdstr = 'kvlQuantifyHippocampalSubfieldSegmentations.sh'
+print cmdstr
+#os.system(cmdstr)
+
+avgfiles = os.path.join(tmpdir, '*average')
+cmdstr = 'mv ' + avgfiles + ' ' + subjdir
+print cmdstr
+#os.system(cmdstr)
