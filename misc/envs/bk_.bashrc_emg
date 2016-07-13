@@ -1,0 +1,98 @@
+# .bashrc_dev
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
+fi
+
+# User specific aliases and functions
+# SGE settings
+export SGE_ROOT=/usr/sge
+export SGE_CELL=default
+if [ -e $SGE_ROOT/$SGE_CELL ]
+then
+  . $SGE_ROOT/$SGE_CELL/common/settings.sh
+fi
+
+# Matlab Cofiguration
+MATLAB_HOME=/usr/local/neurosoft/MATLAB2010b export MATLAB_HOME 
+PATH=$PATH:$MATLAB_HOME/bin export PATH 
+
+# FSL Configuration
+FSLDIR=/usr/local/neurosoft/fsl
+#FSL_COURSE_DATA=/nfs/s2/nsptesting/dti
+PATH=${FSLDIR}/bin:${PATH}
+. ${FSLDIR}/etc/fslconf/fsl.sh
+export FSLDIR #FSL_COURSE_DATA
+
+# FREESURFER Configuration
+#FREESURFERDIR=/usr/local/neurosoft/freesurfer
+#. ${FREESURFERDIR}/SetUpFreeSurfer.sh
+#SUBJECTS_DIR=/usr/local/neurosoft/freesurfer/subjects
+#export SUBJECT_DIR
+
+# AFNI Configuration
+AFNIDIR=/usr/local/neurosoft/afni
+PATH=${AFNIDIR}:${PATH}
+#export AFNIDIR PATH
+
+# Python2.6 Configuration
+# epd-7.2.1 configuration
+EPD_Path=/usr/local/neurosoft/epd-7.2.1/bin
+PATH=${EPD_Path}:${PATH}
+
+# Shell binary file configuration
+ShellBin_DIR=/usr/local/neurosoft/labtool/shell
+PATH=${ShellBin_DIR}:${PATH}
+
+# Python scripts configuration
+#Python_scp=~/workingdir/svnDir/neospearman/toolbox/pynit/trunk/bin
+#PATH=${Python_scp}:${PATH}
+
+# R configuration
+R_HOME=/usr/local/neurosoft/R
+export R_LIBS=/usr/local/neurosoft/R/lib64/R/lib
+PATH=${R_HOME}/bin:${PATH}
+
+# shared library config
+export LD_LIBRARY_PATH=${R_LIBS}:/usr/local/neurosoft/usr/lib
+
+#mypwd
+#viewPath=/nfs/j3/userhome/kongxiangzhen/workingdir/utils
+#PATH=${viewPath}:$PATH
+
+#svn
+export SVN_EDITOR=/usr/bin/vim
+
+#PYNIT
+#PYNIT=~/workingdir/svnDir/neospearman/toolbox/pynit/trunk
+#PYTHONPATH=${PYNIT}:${PYTHONPATH}
+#PYBP=~/workingdir/svnDir/neospearman/toolbox/pybp/trunk
+#PYTHONPATH=${PYBP}:${PYTHONPATH}
+
+#HOMEPYTHON
+MYPYTHONPAK=/nfs/j3/userhome/kongxiangzhen/opt/lib/python2.7/site-packages/
+PYTHONPATH=${PYTHONPATH}:${MYPYTHONPAK}
+export PYTHONPATH
+
+#pyClusterROI
+export PYTHONPATH=$PYTHONPATH:/nfs/j3/userhome/kongxiangzhen/opt/lib/python2.7/site-packages/pyClusterROI
+
+#DTK
+export PATH=$PATH:/nfs/j3/userhome/kongxiangzhen/opt/dtk
+
+# rrm for mv2recyclebin
+alias rrm='mv2recyclebin'
+
+# pylint
+export PATH=$PATH:/nfs/j3/userhome/kongxiangzhen/opt/lib/python2.7/site-packages/pylint-0.25.1/bin
+
+# probtrackx2
+#export PATH=$PATH:/nfs/j3/userhome/kongxiangzhen/workingdir/utils/probtrackx2/bin
+
+#pybp
+#PYBP=~/workingdir/svnDir/neospearman/toolbox/pybp/tags/pybp_0.0.3_dev
+#PYTHONPATH=$PYBP:$PYTHONPATH
+#export PYTHONPATH
+#export PATH=$PATH:$PYBP/bin
+

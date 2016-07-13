@@ -1,0 +1,241 @@
+# .bashrc_dev
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
+fi
+
+# User specific aliases and functions
+# SGE settings
+if [ $HOSTNAME != 'marr' ]; then
+	export SGE_ROOT=/usr/sge
+	export SGE_CELL=default
+	if [ -e $SGE_ROOT/$SGE_CELL ]; then
+	      . $SGE_ROOT/$SGE_CELL/common/settings.sh
+        fi
+fi
+
+
+# anaconda configuration
+ANA_Path=/usr/local/neurosoft/anaconda/bin
+PATH=${ANA_Path}:${PATH}
+export PYTHONPATH=/usr/local/neurosoft/labtool/pynit:/usr/local/neurosoft/labtool/atlas:/nfs/j3/userhome/kongxiangzhen/workingdir/Projects/GBC_S100B/script
+
+# Matlab Cofiguration
+#MATLAB_HOME=/usr/local/neurosoft/MATLAB2012b export MATLAB_HOME
+MATLAB_HOME=/usr/local/neurosoft/MATLAB2010b export MATLAB_HOME
+PATH=$PATH:$MATLAB_HOME/bin export PATH 
+
+# FSL Configuration
+#FSLDIR='/usr/local/neurosoft/fsl'
+FSLDIR='/usr/local/neurosoft/fsl5.0.1'
+PATH=${FSLDIR}/bin:${PATH}
+. ${FSLDIR}/etc/fslconf/fsl.sh
+export FSLDIR #FSL_COURSE_DATA
+
+# FREESURFER Configuration
+FREESURFERDIR=/usr/local/neurosoft/freesurfer5.3.0
+#FREESURFERDIR=/usr/local/neurosoft/freesurfer5.3.0
+#FREESURFERDIR=/usr/local/neurosoft/freesurfer
+#FREESURFER_HOME=/nfs/j3/userhome/kongxiangzhen/opt/freesurfer export FREESURFER_HOME
+#FREESURFERDIR=/nfs/j3/userhome/kongxiangzhen/opt/freesurfer
+
+. ${FREESURFERDIR}/SetUpFreeSurfer.sh
+
+#SUBJECTS_DIR=/usr/local/neurosoft/freesurfer/subjects
+#SUBJECTS_DIR=/nfs/t1/nsppara/corticalsurface/
+#SUBJECTS_DIR=/nfs/j3/userhome/kongxiangzhen/workingdir/MRI/Sleeploss/subj
+#SUBJECTS_DIR=/nfs/j3/userhome/kongxiangzhen/workingdir/MRI/GERXY/subj
+#SUBJECTS_DIR=~/workingdir/Projects/head_motion/adhd/peking/WX_Workingdir/recon-all
+#SUBJECTS_DIR=/nfs/s2/dticenter/fc1000/cortical
+SUBJECTS_DIR=/nfs/j3/userhome/kongxiangzhen/workingdir/tem/cortical
+export SUBJECTS_DIR
+
+# FreeROI
+. /usr/local/neurosoft/labtool/addfreeroi.sh
+
+AFNIDIR=~/opt/bin/abin
+PATH=${AFNIDIR}:${PATH}
+export AFNIDIR PATH
+
+#ahdir=`apsearch -afni_help_dir`
+#if [ -f "$ahdir/all_progs.COMP.bash" ]
+#then
+#	. $ahdir/all_progs.COMP.bash
+#fi
+
+
+# Caret configuration
+CARETDIR=/usr/local/neurosoft/caret/bin_linux64
+PATH=${CARETDIR}:${PATH}
+
+G_Path=~/workingdir/tools/PyGretna/
+PATH=${G_Path}:${PATH}
+
+# autoptx from fsl
+autoptx_Path=~/workingdir/utils/autoptx
+PATH=${autoptx_Path}:${PATH}
+
+# Shell binary file configuration
+ShellBin_DIR=/usr/local/neurosoft/labtool/shell
+PATH=${ShellBin_DIR}:${PATH}
+
+# Python scripts configuration
+Python_scp=~/workingdir/svnDir/nitk/nitk-pipeline/trunk/bin
+PATH=${Python_scp}:${PATH}
+
+Python_bbc=~/workingdir/svnDir/nitk/nitk-bbc/trunk/bin
+PATH=${Python_bbc}:${PATH}
+
+rest=~/workingdir/svnDir/nitk/nitk-pipeline/trunk/nkpi/rfmri/sess
+PATH=${rest}:${PATH}
+
+itksnap=/nfs/j3/userhome/kongxiangzhen/opt/itksnap/bin
+PATH=${itksnap}:${PATH}
+
+# R configuration
+R_HOME=/usr/local/neurosoft/R
+R_LIBS=/usr/local/neurosoft/R/lib64/R/lib
+export R_LIBS=${R_LIBS}:~/opt/Rs
+PATH=${R_HOME}/bin:${PATH}
+
+# shared library config
+export LD_LIBRARY_PATH=${R_LIBS}:/usr/local/neurosoft/usr/lib
+export LD_LIBRARY_PATH=/nfs/j3/userhome/kongxiangzhen/opt/lib:${LD_LIBRARY_PATH}
+export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:~/opt/lib64
+
+#pkgconfig
+export PKG_CONFIG_PATH=/nfs/j3/userhome/kongxiangzhen/opt/lib/pkgconfig
+export PKG_CONFIG_PATH=~/opt/share/pkgconfig:${PKG_CONFIG_PATH}
+
+
+#mypwd
+utilsPath=/nfs/j3/userhome/kongxiangzhen/workingdir/utils
+PATH=${utilsPath}:$PATH
+PYVIEW=/nfs/j3/userhome/kongxiangzhen/workingdir/utils/pyview
+PYTHONPATH=${PYVIEW}:$PYTHONPATH
+pyview_bin=/nfs/j3/userhome/kongxiangzhen/workingdir/utils/pyview/bin
+PATH=${pyview_bin}:${PATH}
+pyupx_bin=/nfs/j3/userhome/kongxiangzhen/workingdir/utils/upx
+PATH=${pyupx_bin}:${PATH}
+
+#svn
+export SVN_EDITOR=/usr/bin/vim
+
+#PYNIT
+#PYNIT=~/workingdir/svnDir/neospearman/toolbox/pynit/trunk
+#PYTHONPATH=${PYNIT}:${PYTHONPATH}
+
+#xalglib
+XALG=~/workingdir/tools/Python/cpython
+PYTHONPATH=${XALG}:${PYTHONPATH}
+
+#MYPY
+PYSF=/nfs/j3/userhome/kongxiangzhen/opt/lib/python2.7/pysurfer
+PYTHONPATH=${PYSF}:${PYTHONPATH}
+
+#NKPI
+NKPI=~/workingdir/svnDir/nitk/nitk-pipeline/trunk
+PYTHONPATH=${NKPI}:${PYTHONPATH}
+
+#NKPI
+NKPI=~/workingdir/svnDir/nitk/nitk-lib/trunk
+PYTHONPATH=${NKPI}:${PYTHONPATH}
+
+#NKVI
+NKVI=~/workingdir/svnDir/nitk/nitk-view/trunk
+PYTHONPATH=${NKVI}:${PYTHONPATH}
+
+#NKBBC
+NKBBC=~/workingdir/svnDir/nitk/nitk-bbc/trunk
+PYTHONPATH=${NKBBC}:${PYTHONPATH}
+
+#pysurfer
+#pysurfer=/nfs/j3/userhome/kongxiangzhen/opt/lib/python2.7/site-packages/pysurfer-0.3.1-py2.7.egg/surfer
+#PYTHONPATH=${pysurfer}:${PYTHONPATH}
+
+#HOMEPYTHON
+MYPYTHONPAK=~/opt/lib/python2.7/site-packages/
+PYTHONPATH=${PYTHONPATH}:${MYPYTHONPAK}
+export PYTHONPATH
+
+#pyClusterROI
+#export PYTHONPATH=$PYTHONPATH:~/opt/lib/python2.7/site-packages/pyClusterROI
+
+#PyWapFetion
+#export PYTHONPATH=$PYTHONPATH:~/opt/lib/python2.7/site-packages/PyWapFetion
+
+#DTK
+export PATH=$PATH:/nfs/j3/userhome/kongxiangzhen/opt/dtk
+
+export BLAS=~/src/BLAS/libfblas.a
+export LAPACK=~/src/lapack-3.5.0/liblapack.a
+
+# rrm for mv2recyclebin
+alias rm='mv2recyclebin'
+
+# opt/bin
+export PATH=$PATH:~/opt/bin
+
+# eclipse
+export PATH=$PATH:~/opt/eclipse
+
+# probtrackx2
+export PATH=$PATH:/nfs/j3/userhome/kongxiangzhen/workingdir/utils/probtrackx2/bin
+
+#for mricron
+export PATH=$PATH:~/opt/mricron
+
+# Mutual Information ICA
+MIICA_BIN=/usr/local/neurosoft/MutualInformationICA
+PATH=${MIICA_BIN}:${PATH}
+
+ASPERABIN=~/.aspera/connect/bin/
+PATH=$ASPERABIN:$PATH
+
+alleninfo=~/.local/bin
+PATH=$alleninfo:$PATH
+
+# DICCCOL configuration
+DICCCOL_HOME=/usr/local/neurosoft/dicccol
+DICCCOL_BIN=${DICCCOL_HOME}/bin
+PATH=${DICCCOL_BIN}:${PATH}
+
+export PERL5LIB=$PERL5LIB:`echo ~/perl/*/perl5/* | sed 's/ /:/g'`
+#export PERL5LIB=~/perl/
+
+export http_proxy=http://172.16.191.84:8082/
+
+function brainvisa_setup
+{
+.  ~/workingdir/tools/brainvisa/bin/bv_env.sh ~/workingdir/tools/brainvisa
+ }
+
+# plink configuration
+PLINK_HOME=/usr/local/neurosoft/plink-1.07
+ATH=${PLINK_HOME}:${PATH}
+
+# mallet configuration
+MALLET_HOME=/usr/local/neurosoft/mallet
+MALLET_BIN=${MALLET_HOME}/bin
+PATH=${MALLET_BIN}:${PATH}
+
+# PyCharm configuration
+PYCHARM_HOME=/usr/local/neurosoft/pycharm-5.0.3
+PYCHARM_BIN=${PYCHARM_HOME}/bin
+PATH=${PYCHARM_BIN}:${PATH}
+
+# Mrtrix configuration
+MRTRIX_HOME=/usr/local/neurosoft/mrtrix3
+PATH=${MRTRIX_HOME}:${PATH}
+
+export mach=~/workingdir/tools/mach/executables
+PATH=$mach:$PATH
+export chunckchr=~/workingdir/tools/ChunckChr/generic-ChunkChromosome/ChunckChr
+PATH=$chunckchr:$PATH
+
+export gcta=/nfs/j3/userhome/kongxiangzhen/workingdir/learning/gcta/gcta_1.25.2
+PATH=$gcta:$PATH
+
+export snptest=/nfs/j3/userhome/kongxiangzhen/workingdir/learning/snptest_v2.5.2
+PATH=$snptest:$PATH
